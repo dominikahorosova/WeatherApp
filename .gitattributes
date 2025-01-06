@@ -1,2 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Definice atributů pro soubory v projektu
+*.js   text eol=lf
+*.css  text eol=lf
+*.html text eol=lf
+
