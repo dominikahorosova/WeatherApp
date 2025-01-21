@@ -27,13 +27,13 @@
     </nav>
     <!--MAIN SECTION WITH ACTUAL DATE-->
     <div class="container">
-      <div class="main title grid">
+      <div class="main title">
         <div id="city"></div>
         <div id="actualTime"></div>
       </div>
     </div>
     <!--SECTION WITH ACTUAL WEATHER-->
-    <div class="actual grid">
+    <div class="container actual grid">
       <div class="actualImage grid card">
         <img src="weather-app-img/clouds.png" class="weatherIcon" />
         <div class="title condition">Clear</div>
@@ -58,12 +58,14 @@
     </div>
     <!--SECTION WITH OTHER TIME-->
     <h3>Hourly</h3>
-    <div class="container2">
-      <div id="times"></div>
+    <div class="container">
+      <div id="times" class="scroll-container">
+        <div class="scroll-items"></div>
+      </div>
     </div>
     <!--SECTION WITH FORECAST-->
     <h3>Forecast</h3>
-    <div class="container3">
+    <div class="container">
       <div id="forecast"></div>
     </div>
     <script type="module" src="script_v2.js"></script>

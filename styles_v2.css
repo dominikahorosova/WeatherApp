@@ -26,8 +26,20 @@ body {
   padding-top: 100px;
   background-color: var(--primary-color);
   color: var(--text-color);
-  transition: background-color var(--transition-duration),
-    color var(--transition-duration);
+  transition: background-color var(--transition-duration);
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden; 
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    margin: 10px;
+  }
 }
 
 body.dark-theme {
@@ -57,6 +69,7 @@ nav {
   right: 0;
   z-index: 1000;
   height: 30px;
+  margin: 0 auto;
   padding: 50px;
   font-weight: bold;
   background: linear-gradient(var(--secondary-color), var(--primary-color));
@@ -66,8 +79,12 @@ nav {
   position: relative;
 }
 
+.search img {
+  width: 15px;
+}
+
 nav input {
-  width: 400px;
+  max-width: 400px;
   height: 38px;
   padding: var(--padding);
   margin: 20px;
@@ -79,10 +96,6 @@ nav input {
   top: 30px;
   background: transparent;
   cursor: pointer;
-}
-
-.search img {
-  width: 15px;
 }
 
 nav input,
@@ -106,12 +119,18 @@ nav input {
   border-radius: var(--border-radius);
 }
 
-/* MAIN WEATHER */
-.container,
-.container2,
-.container3 {
-  display: grid;
-  grid-template-rows: auto 1fr;
+.container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.actual_info {
+  padding: var(--padding);
+  display: flex;
+  justify-content: space-between;
 }
 
 .main,
@@ -123,12 +142,14 @@ nav input {
 .grid {
   display: grid;
   align-items: center;
-  grid-template-columns: auto auto;
   justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .actual {
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   justify-content: space-between;
 }
 
@@ -136,7 +157,6 @@ nav input {
 .actualImage,
 #sun {
   height: 100%;
-  padding: 30px 30px 50px;
   box-shadow: 0 -6px 8px rgba(4, 142, 140, 0.2),
     0 6px 8px rgba(4, 142, 140, 0.2);
 }
@@ -158,7 +178,12 @@ nav input {
 }
 
 .actual_info {
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .actualImage {
@@ -181,10 +206,6 @@ h3 {
   padding: var(--padding);
 }
 
-.container2 {
-  grid-template-columns: repeat(9, 1fr);
-}
-
 #times {
   display: flex;
   text-align: center;
@@ -195,8 +216,16 @@ h3 {
   gap: 10px;
 }
 
+.scroll-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
 .hour {
   padding: 10px;
+  cursor: grab;
 }
 
 .small_icon {
@@ -205,35 +234,45 @@ h3 {
 }
 
 /* FORECAST */
-.container3 {
-  grid-template-columns: auto;
-}
-
 .forecast {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--padding);
-  width: 100%;
+  width: 90vw;
   backdrop-filter: var(--backdrop-filter);
-  margin: 10px;
-  position: relative;
+  margin: 10px auto;
 }
 
-.tiny_icon {
-  position: absolute;
-  left: 48%;
-  transform: translateX(-52%);
-  width: 40px;
+.tiny_icon,
+.forecast_temp,
+.forecast_description,
+.day {
+  width: clamp(30px, 5vw, 40px);
+  margin: auto;
 }
 
-#temp {
-  padding: 10px;
+.day,
+.forecast_temp,
+.forecast_description {
+  flex-grow: 1;  
+  text-align: center;
 }
 
-.forecast_temp {
-  position: absolute;
-  right: 45%;
-  transform: translateX(-55%);
-  width: 40px;
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+  }
+
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+  }
 }

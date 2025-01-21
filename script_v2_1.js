@@ -124,6 +124,40 @@ export function hourlyElements(dataTime, container) {
   }
 }
 
+//SCROLL CONTAINER
+const container = document.querySelector(".scroll-container");
+const items = document.querySelector(".scroll-items");
+
+let isDragging = false;
+let startX;
+let scrollLeft;
+
+container.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  startX = e.pageX - container.offsetLeft;
+  scrollLeft = items.scrollLeft;
+  container.style.cursor = "grabbing";
+});
+
+container.addEventListener("mouseleave", () => {
+  isDragging = false;
+  container.style.cursor = "grab";
+});
+
+container.addEventListener("mouseup", () => {
+  isDragging = false;
+  container.style.cursor = "grab";
+});
+
+container.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - container.offsetLeft;
+  const walk = (x - startX) * 2; 
+  items.scrollLeft = scrollLeft - walk;
+});
+
+
 //ICON CHANGE
 export function weatherIconChange(icon) {
   if (icon >= 200 && icon <= 232) {
